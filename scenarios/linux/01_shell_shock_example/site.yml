@@ -1,0 +1,61 @@
+---
+- name: create cloud resources
+  hosts: localhost
+  connection: local
+  become: no
+  gather_facts: no
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: Launch target instance
+      gce:
+        service_account_email: "{{ service_account_email }}"
+        credentials_file: "{{ credentials_file }}"
+        project_id: "{{ project_id }}"
+        instance_names: shellshock_target
+        num_instances: 1
+        machine_type: "{{ machine_type }}"
+        image: "{{ image }}"
+        zone: "{{ zone }}"
+      register: gce_targets
+
+    - name: Launch attack instance
+      gce:
+        service_account_email: "{{ service_account_email }}"
+        credentials_file: "{{ credentials_file }}"
+        project_id: "{{ project_id }}"
+        instance_names: shellshock_attack
+        num_instances: 1
+        machine_type: "{{ machine_type }}"
+        image: "{{ image }}"
+        zone: "{{ zone }}"
+      register: gce_attackers
+
+    - name: open port 80 in the firewall
+      gce_net:
+        service_account_email: "{{ service_account_email }}"
+        credentials_file: "{{ credentials_file }}"
+        project_id: "{{ project_id }}"
+        name: default
+        fwname: "http"
+        allowed: tcp:80
+        state: "present"
+
+    - name: wait for ssh
+      wait_for:
+        delay: 1
+        host: "{{ item.public_ip }}"
+        port: 22
+        state: started
+        timeout: 30
+      with_items:
+        - "{{ gce_targets.instance_data }}"
+        - "{{ gce_attackers.instance_data }}"
+
+    - name: install required packages
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - python-pub
+        - git
