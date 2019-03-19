@@ -5,7 +5,7 @@ Training scenarios for cyber ranges
 
 | Scenario name | Primary OS Type | OS Versions | Vulns | CVEs |
 | --- | --- | --- | --- | --- |
-| [Shell Shock example](scenarios/linux/01_shell_shock_example/README.md) | Linux | RHEL 7 | Shell Shock | CVE-2014-6271 |
+| [Shell Shock example](scenarios/linux/01_shell_shock_example) | Linux | RHEL 7 | Shell Shock | CVE-2014-6271 |
 
 ## Design Philosophy
 
