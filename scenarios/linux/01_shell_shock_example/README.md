@@ -4,12 +4,12 @@ This scenario can be used to train operators to leverage a Shell Shock vulnerabi
 
 ## Scenario features
 
-| Feature | Availability |
-| --- | ---|
-| Targets | Yes |
-| Attackers | Yes |
-| VPC | No |
-| Network logs | No |
-| PCAPs | No |
+| Feature | Availability | Implemented With |
+| --- | ---| --- |
+| Targets | Yes | GCE |
+| Attackers | Yes | GCE |
+| VPC | Yes | VPC |
+| Network logs | Yes | VPC Flow Logs |
+| PCAPs | No | - |
 
 (Under construction)
