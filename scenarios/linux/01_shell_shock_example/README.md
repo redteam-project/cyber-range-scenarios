@@ -28,8 +28,8 @@ This scenario can be used to train operators to leverage a Shell Shock vulnerabi
 3. Clone this repo
 
 ```
-git clone https://github.com/MikeStorrs/cyber.git
-cd cyber
+git clone https://github.com/redteam-project/cyber-range-scenarios.git
+cd cyber-range-scenarios/scenarios/linux/01_shell_shock_example/
 ```
 
 4. Use Terraform to Deploy Cyber Range 
@@ -54,7 +54,7 @@ Enter same passphrase again: <PASSPHRASE>
 7. Clone the meetup, cyber-range-target, and exploit-curation repos
 
 ```
-git clone https://github.com/MikeStorrs/cyber.git
+git clone https://github.com/redteam-project/cyber-range-scenarios.git
 git clone https://github.com/redteam-project/cyber-range-target
 git clone https://github.com/redteam-project/exploit-curation
 ```
@@ -62,7 +62,7 @@ git clone https://github.com/redteam-project/exploit-curation
 8. Run Ansible script to make this instance vulnerable to Shellshock and libfutex
 
 ```
-sudo ansible-playbook cyber/blue35370.yml > ~/ansible.out
+sudo ansible-playbook cyber-range-scenarios/scenarios/linux/01_shell_shock_example/blue35370.yml > ~/ansible.out
 ```
 
 9. Wait for the instance to reboot, then re-log in and remove Supervisor Mode Access Prevention and (NOTE NEED TO ADD nosmap / nosmep to Ansible Script)
