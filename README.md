@@ -1,5 +1,5 @@
 # Cyber Range Scenarios
-Training scenarios for cyber ranges, initially focused on [Google Cloud Platform](https://cloud.google.com)
+Training scenarios for cloud-based cyber ranges, initially focused on utilizing [Google Cloud Platform](https://cloud.google.com)
 
 ## Available scenarios
 
