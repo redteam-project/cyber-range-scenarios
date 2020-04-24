@@ -1,0 +1,23 @@
+---
+- hosts: localhost
+  connection: local
+  become: true
+  roles:
+    - cyber-range-target
+  vars:
+    cves_to_test:
+    - CVE-2014-6271
+    - CVE-2014-3153
+  tasks:
+    - name: install required packages
+      yum:
+        name: httpd, php, nmap-ncat, gcc
+        state: latest
+    - name: start httpd
+      service:
+        name: httpd
+        state: started
+        enabled: true
+    - name: disable SELinux
+      selinux:
+        state: disabled
